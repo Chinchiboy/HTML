@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create New Task</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <meta name="author" content="Sr. Chinchilla">
+</head>
+<body>
+  <div class="container">
+    <h2>Create new task</h2>
+    <form>
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <label for="title" class="form-label">Title</label>
+          <input type="text" class="form-control" id="title" placeholder="Title">
+        </div>
+        <div class="col-md-6">
+          <label for="location" class="form-label">Location</label>
+          <input type="text" class="form-control" id="location" placeholder="Location">
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-md-4">
+          <label for="type" class="form-label">Type</label>
+          <select id="type" class="form-control">
+            <option>Incident</option>
+            <option>Task</option>
+            <option>Request</option>
+          </select>
+        </div>
+        <div class="col-md-4">
+          <label for="criticity" class="form-label">Criticity</label>
+          <select id="criticity" class="form-control">
+            <option>Minor</option>
+            <option>Major</option>
+            <option>Critical</option>
+          </select>
+        </div>
+        <div class="col-md-4">
+          <label class="form-label">Environment</label>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="prod">
+            <label class="form-check-label" for="prod">Prod</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="preprod">
+            <label class="form-check-label" for="preprod">Preprod</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="demo">
+            <label class="form-check-label" for="demo">Demo</label>
+          </div>
+        </div>
+      </div>
+      <div class="form-group mb-3">
+        <label for="description">Description</label>
+        <textarea class="form-control" id="description" rows="3"></textarea>
+      </div>
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <label for="start-date" class="form-label">Start date</label>
+          <input type="date" class="form-control" id="start-date">
+        </div>
+        <div class="col-md-6">
+          <label for="duration" class="form-label">Duration (in hours)</label>
+          <div class="input-group">
+            <button class="btn btn-outline-secondary" type="button" onclick="adjustDuration(-0.5)">-</button>
+            <input type="number" class="form-control" id="duration" value="1" min="0">
+            <button class="btn btn-outline-secondary" type="button" onclick="adjustDuration(0.5)">+</button>
+          </div>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <label for="status" class="form-label">Status</label>
+          <select id="status" class="form-control">
+            <option>Planned</option>
+            <option>In Progress</option>
+            <option>Completed</option>
+            <option>On Hold</option>
+          </select>
+        </div>
+        <div class="col-md-6">
+          <label for="percent-complete" class="form-label">Percent complete</label>
+          <input type="number" class="form-control" id="percent-complete" value="0" min="0" max="100" step="1">
+        </div>
+      </div>
+      <div class="form-group form-check mb-3">
+        <input type="checkbox" class="form-check-input" id="send-email">
+        <label class="form-check-label" for="send-email">Check here if you want to send an email</label>
+      </div>
+      <div class="d-flex justify-content-end">
+        <button type="button" class="btn btn-secondary me-2">Cancel</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </form>
+  </div>
+  <script>
+    function adjustDuration(value) {
+      var durationInput = document.getElementById('duration');
+      var currentValue = parseFloat(durationInput.value);
+      var newValue = currentValue + value;
+      if (newValue < 0) {
+        newValue = 0;
+      }
+      durationInput.value = newValue.toFixed(1);
+    }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+</body>
+</html>

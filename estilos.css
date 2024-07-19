@@ -1,0 +1,70 @@
+<style> 
+  /* Ejemplo resuelto: Todos las etiquetas de la pagina */
+  * { 
+    font: 1em/1.3 Arial, Helvetica, sans-serif; 
+  } 
+  
+  /* Todos los párrafos de la pagina */
+  p { 
+    color: #555; 
+  } 
+  
+  /* Todos los enlaces de la pagina */
+  a { 
+    color: #CC3300; 
+  } 
+  
+  /* Elementos "h1" y "h2" de la página */
+  h1, h2 { 
+    font-size: 40px; 
+  } 
+  
+  /* Todo lo contenido dentro de la etiqueta con ID=primero */
+  #primero { 
+    color: #336699; 
+  } 
+  
+  /* Todas etiquetas de la clase "especial" */
+  .especial { 
+    background: #FFFFCC; 
+    padding: 1em; 
+  }
+  
+  /* Las etiquetas "em" que pertenecen a la clase "especial" */ 
+  .especial em { 
+    background: #BBBBBB; 
+    padding: 1em; 
+  } 
+  
+  /* Elemento que tiene el id "primero" y que pertenece a la clase "especial" */ 
+  #primero.especial { 
+    background: orange; 
+    padding: 1em; 
+  } 
+  
+  /* Aplicar borde a la tabla */
+  table { 
+    border-style: dotted; 
+  } 
+  
+  /* Todos los elementos strong que son hijos directos de un párrafo */
+  p > strong { 
+    color: red; 
+  } 
+  
+  /* Todos los elementos strong que son hijos directos de "body" */ 
+  body > strong { 
+    color: yellow; 
+  } 
+  
+  /* Todos los elementos strong que son descendientes de (contenidos en) "body" */
+  body strong { 
+    color: blue; 
+  } 
+  
+  /* Primer párrafo a continuación de un h2 */
+  h2 + p { 
+    background: #FFFFCC; 
+    padding: .1em; 
+  } 
+</style>
