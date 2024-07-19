@@ -1,0 +1,11 @@
+.btn-color {
+  margin: 5px;
+}
+.color-layer {
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border: 1px solid black;
+}
