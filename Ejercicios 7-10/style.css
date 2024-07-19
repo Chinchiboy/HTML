@@ -39,3 +39,33 @@
   border: 1px solid #ddd; /* Borde ligero alrededor de cada ítem */
   margin-bottom: 10px; /* Espaciado en la parte inferior de cada ítem */
 }
+
+#word-display {
+  font-size: 24px;
+  letter-spacing: 5px;
+  margin-bottom: 20px;
+}
+
+#message {
+  font-size: 20px;
+  color: red;
+  margin-bottom: 20px;
+}
+
+#guess-input {
+  font-size: 20px;
+  width: 50px;
+  text-align: center;
+  margin-right: 10px;
+}
+
+#guess-button, #reset-button {
+  font-size: 20px;
+  padding: 10px 20px;
+  margin: 10px;
+  cursor: pointer;
+}
+
+#hangman-image {
+  margin-top: 20px;
+}

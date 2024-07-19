@@ -119,15 +119,88 @@ const numero = 23;
 let suma = 0;
 let resultado = `<div class="columns">`;
 
-// Calcular los múltiplos y la suma
 for (let i = numero; i < limite; i += numero) {
     resultado += `<div class="column-item">${i}</div>`;
     suma += i; // Acumular la suma correctamente
 }
 
-// Añadir la suma al resultado
 resultado += `<div class="column-item">Suma de los múltiplos: ${suma}</div>`;
 resultado += `</div>`;
 
-// Mostrar el resultado en el label
 document.getElementById('output').innerHTML = resultado;
+
+
+//Ejercicio 10
+const words = ['ejemplo', 'computadora', 'programacion', 'javascript', 'desarrollador'];
+let word = '';
+let displayWord = '';
+let wrongGuesses = 0;
+const maxWrongGuesses = 7;
+let guessedLetters = [];
+
+document.addEventListener('DOMContentLoaded', () => {
+  const wordDisplay = document.getElementById('word-display');
+  const message = document.getElementById('message');
+  const guessInput = document.getElementById('guess-input');
+  const guessButton = document.getElementById('guess-button');
+  const resetButton = document.getElementById('reset-button');
+  const hangmanImage = document.getElementById('hangman-image');
+
+  function startGame() {
+    word = words[Math.floor(Math.random() * words.length)];
+    displayWord = '_'.repeat(word.length);
+    wrongGuesses = 0;
+    guessedLetters = [];
+    updateDisplay();
+    message.textContent = '';
+    guessInput.value = '';
+    guessInput.focus();
+    hangmanImage.innerHTML = `<img src="images/hangman0.png" alt="Hangman">`;
+    guessButton.disabled = false;
+    resetButton.style.display = 'none';
+  }
+
+  function updateDisplay() {
+    wordDisplay.textContent = displayWord.split('').join(' ');
+    hangmanImage.innerHTML = `<img src="images/hangman${wrongGuesses}.png" alt="Hangman">`;
+  }
+
+  function handleGuess() {
+    const guess = guessInput.value.toLowerCase();
+    if (guess.length !== 1 || guessedLetters.includes(guess)) {
+      return;
+    }
+    guessedLetters.push(guess);
+    if (word.includes(guess)) {
+      let newDisplayWord = '';
+      for (let i = 0; i < word.length; i++) {
+        if (guessedLetters.includes(word[i])) {
+          newDisplayWord += word[i];
+        } else {
+          newDisplayWord += '_';
+        }
+      }
+      displayWord = newDisplayWord;
+      if (!displayWord.includes('_')) {
+        message.textContent = '¡Ganaste!';
+        guessButton.disabled = true;
+        resetButton.style.display = 'block';
+      }
+    } else {
+      wrongGuesses++;
+      if (wrongGuesses >= maxWrongGuesses) {
+        message.textContent = '¡Perdiste! La palabra era: ' + word;
+        guessButton.disabled = true;
+        resetButton.style.display = 'block';
+      }
+    }
+    updateDisplay();
+    guessInput.value = '';
+    guessInput.focus();
+  }
+
+  guessButton.addEventListener('click', handleGuess);
+  resetButton.addEventListener('click', startGame);
+
+  startGame();
+});
