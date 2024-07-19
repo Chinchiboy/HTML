@@ -9,3 +9,33 @@
   right: 10px;
   border: 1px solid black;
 }
+
+/* Estilo para el label donde se muestran los múltiplos en columnas */
+#output {
+  display: block; /* Asegura que el label se comporta como un bloque */
+  width: 100%;
+  height: 100vh; /* Alto del 100% del viewport */
+  font-family: monospace;
+  border: 1px solid #ccc; /* Borde ligero alrededor del label */
+  padding: 10px; /* Espaciado interno del label */
+  box-sizing: border-box; /* Incluye el borde y el padding en el tamaño total del label */
+  overflow: auto; /* Añade barras de desplazamiento si el contenido excede el tamaño del label */
+  background-color: #f9f9f9; /* Fondo ligeramente gris para el label */
+}
+
+/* Estilo para las columnas */
+.columns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px; /* Espaciado entre columnas */
+}
+
+/* Estilo para cada ítem en la columna */
+.column-item {
+  flex: 1 1 calc(33.333% - 10px); /* Tres columnas con espacio entre ellas */
+  box-sizing: border-box;
+  background-color: #fff; /* Fondo blanco para los ítems */
+  padding: 5px; /* Espaciado interno en cada ítem */
+  border: 1px solid #ddd; /* Borde ligero alrededor de cada ítem */
+  margin-bottom: 10px; /* Espaciado en la parte inferior de cada ítem */
+}

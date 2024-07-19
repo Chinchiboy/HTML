@@ -113,16 +113,21 @@ function cambiarImagen() {
 }
 
 //Ejercicio 9.5
-
 const limite = 1000;
 const numero = 23;
 
 let suma = 0;
+let resultado = `<div class="columns">`;
 
-console.log(`Múltiplos de ${numero} menores a ${limite}:`);
+// Calcular los múltiplos y la suma
 for (let i = numero; i < limite; i += numero) {
-    console.log(i);
-    suma += i;
+    resultado += `<div class="column-item">${i}</div>`;
+    suma += i; // Acumular la suma correctamente
 }
 
-console.log(`Suma de los múltiplos: ${suma}`);
+// Añadir la suma al resultado
+resultado += `<div class="column-item">Suma de los múltiplos: ${suma}</div>`;
+resultado += `</div>`;
+
+// Mostrar el resultado en el label
+document.getElementById('output').innerHTML = resultado;
