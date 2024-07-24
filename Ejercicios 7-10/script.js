@@ -104,13 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-//Ejercicio 9.4
 
-function cambiarImagen() {
-  const select = document.getElementById('imagenSelect');
-  const imagen = document.getElementById('imagen');
-  imagen.src = select.value;
-}
 
 //Ejercicio 9.5
 const limite = 1000;
@@ -121,7 +115,7 @@ let resultado = `<div class="columns">`;
 
 for (let i = numero; i < limite; i += numero) {
     resultado += `<div class="column-item">${i}</div>`;
-    suma += i; // Acumular la suma correctamente
+    suma += i;
 }
 
 resultado += `<div class="column-item">Suma de los múltiplos: ${suma}</div>`;
@@ -130,77 +124,77 @@ resultado += `</div>`;
 document.getElementById('output').innerHTML = resultado;
 
 
-//Ejercicio 10
-const words = ['ejemplo', 'computadora', 'programacion', 'javascript', 'desarrollador'];
-let word = '';
-let displayWord = '';
-let wrongGuesses = 0;
-const maxWrongGuesses = 7;
-let guessedLetters = [];
+// Ejercicio 10
+const palabras = ['teclado', 'pantalla', 'programa', 'software', 'internet'];
+let palabraElegida = '';
+let palabraMostrada = '';
+let errores = 0;
+const maxErrores = 6;
+let letrasIncorrectas = [];
 
-document.addEventListener('DOMContentLoaded', () => {
-  const wordDisplay = document.getElementById('word-display');
-  const message = document.getElementById('message');
-  const guessInput = document.getElementById('guess-input');
-  const guessButton = document.getElementById('guess-button');
-  const resetButton = document.getElementById('reset-button');
-  const hangmanImage = document.getElementById('hangman-image');
+function seleccionarPalabra() {
+  palabraElegida = palabras[Math.floor(Math.random() * palabras.length)];
+  palabraMostrada = '_'.repeat(palabraElegida.length);
+  document.getElementById('wordDisplay').textContent = palabraMostrada.split('').join(' ');
+  document.getElementById('message').textContent = '';
+  document.getElementById('letterInput').value = '';
+  document.getElementById('restartButton').style.display = 'none';
+  document.getElementById('checkButton').disabled = false;
+  errores = 0;
+  letrasIncorrectas = [];
+  document.getElementById('incorrectLetters').textContent = '';
+  actualizarImagen();
+}
 
-  function startGame() {
-    word = words[Math.floor(Math.random() * words.length)];
-    displayWord = '_'.repeat(word.length);
-    wrongGuesses = 0;
-    guessedLetters = [];
-    updateDisplay();
-    message.textContent = '';
-    guessInput.value = '';
-    guessInput.focus();
-    hangmanImage.innerHTML = `<img src="images/hangman0.png" alt="Hangman">`;
-    guessButton.disabled = false;
-    resetButton.style.display = 'none';
-  }
-
-  function updateDisplay() {
-    wordDisplay.textContent = displayWord.split('').join(' ');
-    hangmanImage.innerHTML = `<img src="images/hangman${wrongGuesses}.png" alt="Hangman">`;
-  }
-
-  function handleGuess() {
-    const guess = guessInput.value.toLowerCase();
-    if (guess.length !== 1 || guessedLetters.includes(guess)) {
-      return;
-    }
-    guessedLetters.push(guess);
-    if (word.includes(guess)) {
-      let newDisplayWord = '';
-      for (let i = 0; i < word.length; i++) {
-        if (guessedLetters.includes(word[i])) {
-          newDisplayWord += word[i];
-        } else {
-          newDisplayWord += '_';
-        }
-      }
-      displayWord = newDisplayWord;
-      if (!displayWord.includes('_')) {
-        message.textContent = '¡Ganaste!';
-        guessButton.disabled = true;
-        resetButton.style.display = 'block';
-      }
-    } else {
-      wrongGuesses++;
-      if (wrongGuesses >= maxWrongGuesses) {
-        message.textContent = '¡Perdiste! La palabra era: ' + word;
-        guessButton.disabled = true;
-        resetButton.style.display = 'block';
+function comprobarLetra() {
+  const letra = document.getElementById('letterInput').value.toLowerCase();
+  if (!letra || letra.length !== 1 || palabraMostrada.includes(letra) || letrasIncorrectas.includes(letra)) {
+  return;
+}
+    
+  if (palabraElegida.includes(letra)) {
+    let nuevaPalabraMostrada = palabraMostrada.split('');
+    for (let i = 0; i < palabraElegida.length; i++) {
+      if (palabraElegida[i] === letra) {
+        nuevaPalabraMostrada[i] = letra;
       }
     }
-    updateDisplay();
-    guessInput.value = '';
-    guessInput.focus();
+    palabraMostrada = nuevaPalabraMostrada.join('');
+    document.getElementById('wordDisplay').textContent = palabraMostrada.split('').join(' ');
+          
+    if (palabraMostrada === palabraElegida) {
+      document.getElementById('message').textContent = '¡Ganaste! La palabra era ' + palabraElegida;
+      document.getElementById('checkButton').disabled = true;
+      document.getElementById('restartButton').style.display = 'block'
+    }
+  } else {
+    letrasIncorrectas.push(letra);
+    errores++;
+    actualizarImagen();
+    document.getElementById('incorrectLetters').textContent = 'Letras incorrectas: ' + letrasIncorrectas.join(', ');
+    if (errores >= maxErrores) {
+      document.getElementById('message').textContent = 'Perdiste. La palabra era ' + palabraElegida;
+      document.getElementById('checkButton').disabled = true;
+      document.getElementById('restartButton').style.display = 'block';
+    }
   }
+  document.getElementById('letterInput').value = '';
+}
 
-  guessButton.addEventListener('click', handleGuess);
-  resetButton.addEventListener('click', startGame);
+function actualizarImagen() {
+  document.getElementById('hangmanImage').src = `img/Ahorcado${errores}.jpg`;
+}
 
-  startGame();
+document.addEventListener('DOMContentLoaded', function () {
+  document.getElementById('checkButton').addEventListener('click', comprobarLetra);
+  document.getElementById('restartButton').addEventListener('click', seleccionarPalabra);
+  seleccionarPalabra();
 });
+
+//Ejercicio 9.4
+
+function cambiarImagen() {
+  const select = document.getElementById('imagenSelect');
+  const imagen = document.getElementById('imagen');
+  imagen.src = select.value;
+}

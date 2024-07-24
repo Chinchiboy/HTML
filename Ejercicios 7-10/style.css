@@ -1,3 +1,4 @@
+/*Ejercicio 9 */
 .btn-color {
   margin: 5px;
 }
@@ -10,62 +11,57 @@
   border: 1px solid black;
 }
 
-/* Estilo para el label donde se muestran los múltiplos en columnas */
+/* Ejercicio 9.5 */
 #output {
-  display: block; /* Asegura que el label se comporta como un bloque */
+  display: block;
   width: 100%;
-  height: 100vh; /* Alto del 100% del viewport */
+  height: 100vh;
   font-family: monospace;
-  border: 1px solid #ccc; /* Borde ligero alrededor del label */
-  padding: 10px; /* Espaciado interno del label */
-  box-sizing: border-box; /* Incluye el borde y el padding en el tamaño total del label */
-  overflow: auto; /* Añade barras de desplazamiento si el contenido excede el tamaño del label */
-  background-color: #f9f9f9; /* Fondo ligeramente gris para el label */
+  border: 1px solid #ccc;
+  padding: 10px;
+  box-sizing: border-box;
+  overflow: auto;
+  background-color: #f9f9f9;
 }
-
 /* Estilo para las columnas */
 .columns {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px; /* Espaciado entre columnas */
+  gap: 10px; 
 }
 
 /* Estilo para cada ítem en la columna */
 .column-item {
-  flex: 1 1 calc(33.333% - 10px); /* Tres columnas con espacio entre ellas */
+  flex: 1 1 calc(33.333% - 10px); 
   box-sizing: border-box;
-  background-color: #fff; /* Fondo blanco para los ítems */
-  padding: 5px; /* Espaciado interno en cada ítem */
-  border: 1px solid #ddd; /* Borde ligero alrededor de cada ítem */
-  margin-bottom: 10px; /* Espaciado en la parte inferior de cada ítem */
+  background-color: #fff; 
+  padding: 5px; 
+  border: 1px solid #ddd; 
+  margin-bottom: 10px; 
 }
 
-#word-display {
-  font-size: 24px;
-  letter-spacing: 5px;
-  margin-bottom: 20px;
-}
+/*Ahorcado */
 
-#message {
-  font-size: 20px;
-  color: red;
-  margin-bottom: 20px;
-}
-
-#guess-input {
-  font-size: 20px;
-  width: 50px;
+.container {
   text-align: center;
-  margin-right: 10px;
+  margin-top: 50px;
 }
 
-#guess-button, #reset-button {
-  font-size: 20px;
-  padding: 10px 20px;
-  margin: 10px;
-  cursor: pointer;
+#wordDisplay {
+  font-size: 2em;
+  margin: 20px 0;
 }
 
-#hangman-image {
+#hangmanImage {
+  width: 200px;
+  height: auto;
+  margin-top: 20px;
+}
+
+#restartButton {
+  display: none;
+}
+
+#incorrectLetters {
   margin-top: 20px;
 }
