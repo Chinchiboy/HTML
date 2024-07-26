@@ -104,7 +104,13 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
+//Ejercicio 9.4
 
+function cambiarImagen() {
+  const select = document.getElementById('imagenSelect');
+  const imagen = document.getElementById('imagen');
+  imagen.src = select.value;
+}
 
 //Ejercicio 9.5
 const limite = 1000;
@@ -122,79 +128,3 @@ resultado += `<div class="column-item">Suma de los múltiplos: ${suma}</div>`;
 resultado += `</div>`;
 
 document.getElementById('output').innerHTML = resultado;
-
-
-// Ejercicio 10
-const palabras = ['teclado', 'pantalla', 'programa', 'software', 'internet'];
-let palabraElegida = '';
-let palabraMostrada = '';
-let errores = 0;
-const maxErrores = 6;
-let letrasIncorrectas = [];
-
-function seleccionarPalabra() {
-  palabraElegida = palabras[Math.floor(Math.random() * palabras.length)];
-  palabraMostrada = '_'.repeat(palabraElegida.length);
-  document.getElementById('wordDisplay').textContent = palabraMostrada.split('').join(' ');
-  document.getElementById('message').textContent = '';
-  document.getElementById('letterInput').value = '';
-  document.getElementById('restartButton').style.display = 'none';
-  document.getElementById('checkButton').disabled = false;
-  errores = 0;
-  letrasIncorrectas = [];
-  document.getElementById('incorrectLetters').textContent = '';
-  actualizarImagen();
-}
-
-function comprobarLetra() {
-  const letra = document.getElementById('letterInput').value.toLowerCase();
-  if (!letra || letra.length !== 1 || palabraMostrada.includes(letra) || letrasIncorrectas.includes(letra)) {
-  return;
-}
-    
-  if (palabraElegida.includes(letra)) {
-    let nuevaPalabraMostrada = palabraMostrada.split('');
-    for (let i = 0; i < palabraElegida.length; i++) {
-      if (palabraElegida[i] === letra) {
-        nuevaPalabraMostrada[i] = letra;
-      }
-    }
-    palabraMostrada = nuevaPalabraMostrada.join('');
-    document.getElementById('wordDisplay').textContent = palabraMostrada.split('').join(' ');
-          
-    if (palabraMostrada === palabraElegida) {
-      document.getElementById('message').textContent = '¡Ganaste! La palabra era ' + palabraElegida;
-      document.getElementById('checkButton').disabled = true;
-      document.getElementById('restartButton').style.display = 'block'
-    }
-  } else {
-    letrasIncorrectas.push(letra);
-    errores++;
-    actualizarImagen();
-    document.getElementById('incorrectLetters').textContent = 'Letras incorrectas: ' + letrasIncorrectas.join(', ');
-    if (errores >= maxErrores) {
-      document.getElementById('message').textContent = 'Perdiste. La palabra era ' + palabraElegida;
-      document.getElementById('checkButton').disabled = true;
-      document.getElementById('restartButton').style.display = 'block';
-    }
-  }
-  document.getElementById('letterInput').value = '';
-}
-
-function actualizarImagen() {
-  document.getElementById('hangmanImage').src = `img/Ahorcado${errores}.jpg`;
-}
-
-document.addEventListener('DOMContentLoaded', function () {
-  document.getElementById('checkButton').addEventListener('click', comprobarLetra);
-  document.getElementById('restartButton').addEventListener('click', seleccionarPalabra);
-  seleccionarPalabra();
-});
-
-//Ejercicio 9.4
-
-function cambiarImagen() {
-  const select = document.getElementById('imagenSelect');
-  const imagen = document.getElementById('imagen');
-  imagen.src = select.value;
-}
